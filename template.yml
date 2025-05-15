@@ -3,6 +3,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: Arquitectura Mintic con VPC, 2 AZ, 2 Subnets Públicas, 2 EC2 estáticas, 4 EC2 en ASG y ALB con GatewayInternet
 
 Parameters:
+
   # Parámetro para definir la AMI que usarán las instancias EC2
   MinticAmiId:
     Description: AMI para las instancias EC2
@@ -217,8 +218,6 @@ Resources:
     Type: AWS::AutoScaling::ScheduledAction
     Properties:
       AutoScalingGroupName: !Ref MinticASG
-      MinSize: 0
-      MaxSize: 0
       DesiredCapacity: 0
       Recurrence: "0 13 * * *"   # 8:00 AM Colombia
 
@@ -227,8 +226,6 @@ Resources:
     Type: AWS::AutoScaling::ScheduledAction
     Properties:
       AutoScalingGroupName: !Ref MinticASG
-      MinSize: 4
-      MaxSize: 4
       DesiredCapacity: 4
       Recurrence: "15 13 * * *"  # 8:15 AM Colombia
 
